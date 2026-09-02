@@ -1,0 +1,11 @@
+{
+  "title": "IKKA DEL MAR",
+  "description": "Streamline your workflow with an intuitive app that simplifies task management and boosts productivity for professionals and teams.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
