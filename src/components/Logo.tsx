@@ -1,4 +1,4 @@
-import logoImg from '../imports/759849428_18097699628459197_5945281651113337474_n.jpg';
+import { LOGO_BASE64 } from '../data/logoBase64';
 
 type Size = 'xs' | 'sm' | 'md' | 'lg';
 
@@ -31,7 +31,7 @@ export default function Logo({ size = 'md', variant = 'dark', markOnly = false, 
   return (
     <div className={`inline-flex items-center select-none ${className}`} style={{ gap: t.gap }}>
       <img
-        src={logoImg}
+        src={LOGO_BASE64}
         alt="IKKA DEL MAR"
         width={px}
         height={px}
