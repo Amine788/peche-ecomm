@@ -31,7 +31,8 @@ export default function Logo({ size = 'md', variant = 'dark', markOnly = false, 
   return (
     <div className={`inline-flex items-center select-none ${className}`} style={{ gap: t.gap }}>
       <img
-        src={logoImg}
+        src="/logo.jpg"
+        onError={(e) => { (e.currentTarget as HTMLImageElement).src = logoImg; }}
         alt="IKKA DEL MAR"
         width={px}
         height={px}
