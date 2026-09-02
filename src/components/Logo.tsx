@@ -31,12 +31,11 @@ export default function Logo({ size = 'md', variant = 'dark', markOnly = false, 
   return (
     <div className={`inline-flex items-center select-none ${className}`} style={{ gap: t.gap }}>
       <img
-        src="/logo.jpg"
-        onError={(e) => { (e.currentTarget as HTMLImageElement).src = logoImg; }}
+        src={logoImg}
         alt="IKKA DEL MAR"
         width={px}
         height={px}
-        className="rounded-full object-cover shrink-0"
+        className="rounded-full object-cover shrink-0 border border-gold/30 shadow-sm"
         style={{ width: px, height: px }}
       />
       {!markOnly && (
