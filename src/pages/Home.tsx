@@ -284,44 +284,40 @@ export default function Home() {
 
       {/* ── PROMOTIONS ── */}
       {saleProducts.length > 0 && (
-        <section className="relative overflow-hidden py-20 md:py-28" style={{ background: 'linear-gradient(135deg, #0a1628 0%, #0d2040 50%, #0e1e38 100%)' }}>
-          {/* Decorative background elements */}
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-coral/5 blur-[120px] pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-gold/5 blur-[100px] pointer-events-none" />
-          <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 80px)' }} />
+        <section className="bg-slate-950 text-white py-20 md:py-28 relative overflow-hidden border-t border-slate-800">
+          {/* Subtle ambient lighting */}
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-[120px] pointer-events-none" />
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-[120px] pointer-events-none" />
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <ScrollReveal className="flex items-end justify-between mb-14">
+            <ScrollReveal className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
               <div>
-                {/* Big discount badge */}
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="flex items-center justify-center w-16 h-16 rounded-full border-2 border-coral bg-coral/10">
-                    <span className="text-coral font-black text-lg leading-none">%</span>
-                  </div>
-                  <div>
-                    <p className="text-[10px] tracking-[0.5em] uppercase text-coral font-bold mb-1">Offres limitées</p>
-                    <h2 className="font-display text-4xl md:text-6xl font-black uppercase tracking-tight text-white leading-none">
-                      Promotions
-                    </h2>
-                  </div>
-                </div>
-                <p className="text-cream/50 text-sm ml-20 max-w-xs">Jusqu'à -{Math.max(...saleProducts.map(p => p.salePrice ? Math.round(((p.price - p.salePrice) / p.price) * 100) : 0))}% sur une sélection exclusive</p>
+                <span className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.3em] text-red-400 bg-red-500/10 border border-red-500/20 px-3.5 py-1.5 rounded-full mb-4">
+                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                  Offres Spéciales
+                </span>
+                <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-white">
+                  PROMOTIONS
+                </h2>
+                <p className="text-slate-400 text-sm md:text-base mt-2 max-w-md">
+                  Profitez de nos remises exclusives sur une sélection d'équipements de pêche et plongée.
+                </p>
               </div>
               <button
                 onClick={() => goShop('sale')}
-                className="hidden sm:flex items-center gap-2 text-[11px] tracking-widest uppercase text-coral font-bold border border-coral/50 px-5 py-2.5 hover:bg-coral hover:text-white transition-all duration-200 rounded-sm"
+                className="self-start md:self-auto bg-red-600 hover:bg-red-500 text-white px-7 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-200 shadow-lg shadow-red-600/25 hover:scale-105 flex items-center gap-2"
               >
-                Voir tout
-                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                Tout voir en promo
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </button>
             </ScrollReveal>
+
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               {saleProducts.map((product, i) => (
                 <ScrollReveal key={product.id} delay={i * 80}>
                   <ProductCard product={product} />
-
                 </ScrollReveal>
               ))}
             </div>
