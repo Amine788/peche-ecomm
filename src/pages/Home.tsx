@@ -284,22 +284,35 @@ export default function Home() {
 
       {/* ── PROMOTIONS ── */}
       {saleProducts.length > 0 && (
-        <section className="coral-gradient py-20 md:py-28">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ScrollReveal className="flex items-end justify-between mb-12">
+        <section className="relative overflow-hidden py-20 md:py-28" style={{ background: 'linear-gradient(135deg, #0a1628 0%, #0d2040 50%, #0e1e38 100%)' }}>
+          {/* Decorative background elements */}
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-coral/5 blur-[120px] pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-gold/5 blur-[100px] pointer-events-none" />
+          <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 80px)' }} />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <ScrollReveal className="flex items-end justify-between mb-14">
               <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="w-1 h-7 bg-cream/50" />
-                  <p className="text-[10px] tracking-[0.45em] uppercase text-cream/80 font-bold">Offres limitées</p>
+                {/* Big discount badge */}
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="flex items-center justify-center w-16 h-16 rounded-full border-2 border-coral bg-coral/10">
+                    <span className="text-coral font-black text-lg leading-none">%</span>
+                  </div>
+                  <div>
+                    <p className="text-[10px] tracking-[0.5em] uppercase text-coral font-bold mb-1">Offres limitées</p>
+                    <h2 className="font-display text-4xl md:text-6xl font-black uppercase tracking-tight text-white leading-none">
+                      Promotions
+                    </h2>
+                  </div>
                 </div>
-                <h2 className="font-display text-4xl md:text-5xl font-extrabold uppercase tracking-wide text-cream">Promotions</h2>
+                <p className="text-cream/50 text-sm ml-20 max-w-xs">Jusqu'à -{Math.max(...saleProducts.map(p => p.salePrice ? Math.round(((p.price - p.salePrice) / p.price) * 100) : 0))}% sur une sélection exclusive</p>
               </div>
               <button
                 onClick={() => goShop('sale')}
-                className="hidden sm:flex items-center gap-2 text-[11px] tracking-widest uppercase text-cream/80 hover:text-cream transition-colors font-semibold border-b border-transparent hover:border-cream pb-0.5"
+                className="hidden sm:flex items-center gap-2 text-[11px] tracking-widest uppercase text-coral font-bold border border-coral/50 px-5 py-2.5 hover:bg-coral hover:text-white transition-all duration-200 rounded-sm"
               >
                 Voir tout
-                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </button>
@@ -308,6 +321,7 @@ export default function Home() {
               {saleProducts.map((product, i) => (
                 <ScrollReveal key={product.id} delay={i * 80}>
                   <ProductCard product={product} />
+
                 </ScrollReveal>
               ))}
             </div>

@@ -8,6 +8,7 @@ export default function Navbar() {
   const { navigate, cartCount, setShopCategory, currentPage } = useApp();
   const [menuOpen, setMenuOpen] = useState(false);
   const [catOpen, setCatOpen] = useState(false);
+  const [logoClickCount, setLogoClickCount] = useState(0);
   const scrollY = useScrollY();
 
   const scrolled = scrollY > 40;
@@ -24,6 +25,18 @@ export default function Navbar() {
     setCatOpen(false);
   };
 
+  // Secret admin access: triple-click on logo
+  const handleLogoClick = () => {
+    const next = logoClickCount + 1;
+    if (next >= 5) {
+      setLogoClickCount(0);
+      navigate('admin');
+    } else {
+      setLogoClickCount(next);
+      setTimeout(() => setLogoClickCount(0), 2000);
+    }
+  };
+
   return (
     <>
       <header
@@ -36,9 +49,9 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-16 md:h-20' : 'h-20 md:h-24'}`}>
 
-            {/* ── Logo — gauche ── */}
+            {/* ── Logo — gauche (secret: 5 clics rapides = admin) ── */}
             <button
-              onClick={() => handleNav('home')}
+              onClick={handleLogoClick}
               aria-label="Accueil IKKA DEL MAR"
               className="flex items-center gap-3 group shrink-0"
             >
@@ -95,7 +108,7 @@ export default function Navbar() {
 
                 {/* Mega dropdown */}
                 {catOpen && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 pt-2 animate-slide-down">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 pt-2">
                     <div className="glass-navy shadow-2xl rounded-sm overflow-hidden w-[340px]">
                       <div className="px-4 pt-4 pb-2">
                         <p className="text-[9px] tracking-[0.5em] uppercase text-teal/60 font-bold mb-3">Toutes les catégories</p>
@@ -142,21 +155,13 @@ export default function Navbar() {
             {/* ── Actions — droite ── */}
             <div className="flex items-center gap-3 shrink-0">
 
-              {/* Admin — discret */}
-              <button
-                onClick={() => handleNav('admin')}
-                className="hidden md:block text-[9px] tracking-[0.3em] uppercase text-cream/20 hover:text-cream/40 transition-colors"
-              >
-                Admin
-              </button>
-
               {/* Panier */}
               <button
                 onClick={() => handleNav('cart')}
                 className="relative flex items-center justify-center w-10 h-10 border border-cream/15 hover:border-teal/50 hover:bg-teal/10 transition-all duration-200 group rounded-sm"
                 aria-label={`Panier (${cartCount} article${cartCount !== 1 ? 's' : ''})`}
               >
-                <svg className="w-4.5 h-4.5 text-cream/60 group-hover:text-cream transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <svg className="w-[18px] h-[18px] text-cream/60 group-hover:text-cream transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
                   <line x1="3" y1="6" x2="21" y2="6" />
                   <path d="M16 10a4 4 0 01-8 0" />
@@ -258,12 +263,6 @@ export default function Navbar() {
                   <path d="M16 10a4 4 0 01-8 0" />
                 </svg>
                 Panier {cartCount > 0 && `(${cartCount})`}
-              </button>
-              <button
-                onClick={() => handleNav('admin')}
-                className="w-full text-center mt-3 text-[9px] text-cream/20 tracking-widest uppercase hover:text-cream/40 transition-colors"
-              >
-                Administration
               </button>
             </div>
           </div>
