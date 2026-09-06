@@ -47,7 +47,7 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-16 md:h-20' : 'h-20 md:h-24'}`}>
+          <div className="flex items-center justify-between h-20 md:h-22 transition-all duration-300">
 
             {/* ── Logo — gauche (secret: 5 clics rapides = admin) ── */}
             <button
@@ -55,7 +55,7 @@ export default function Navbar() {
               aria-label="Accueil IKKA DEL MAR"
               className="flex items-center gap-3 group shrink-0"
             >
-              <Logo size={scrolled ? 'sm' : 'md'} variant="gold" />
+              <Logo size="md" variant="gold" />
             </button>
 
             {/* ── Navigation desktop — parfaitement centrée ── */}
