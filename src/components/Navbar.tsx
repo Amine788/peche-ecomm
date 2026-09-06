@@ -42,8 +42,8 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           hasSolidHeader
-            ? 'glass-navy shadow-xl shadow-navy/30 border-b border-teal/15'
-            : 'bg-gradient-to-b from-noir/85 via-noir/40 to-transparent border-b border-white/5'
+            ? 'glass-navy shadow-xl shadow-navy/30'
+            : 'bg-gradient-to-b from-noir/85 via-noir/40 to-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
