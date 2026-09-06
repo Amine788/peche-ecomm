@@ -14,7 +14,7 @@ export default function Cart() {
 
   if (cartItems.length === 0) {
     return (
-      <div className="min-h-full pt-24 md:pt-28 flex items-center justify-center">
+      <div className="min-h-full pt-20 flex items-center justify-center">
         <div className="text-center px-4 py-24">
           <svg className="w-16 h-16 mx-auto text-warm-border mb-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
             <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
@@ -37,7 +37,7 @@ export default function Cart() {
   const remaining = FREE_SHIPPING_THRESHOLD - cartSubtotal;
 
   return (
-    <div className="min-h-full pt-24 md:pt-28">
+    <div className="min-h-full pt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
         <h1 className="font-display text-4xl md:text-5xl italic mb-2">Votre panier</h1>
         <p className="text-warm-gray text-sm mb-10">

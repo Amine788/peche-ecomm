@@ -366,7 +366,7 @@ export default function Shop() {
   );
 
   return (
-    <div className="min-h-full pt-24 md:pt-28">
+    <div className="min-h-full pt-20">
 
       {/* ── Quick navigation tabs ── */}
       <div className="bg-navy border-b border-teal/20 overflow-x-auto scrollbar-none">

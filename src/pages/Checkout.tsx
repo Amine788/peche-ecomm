@@ -157,7 +157,7 @@ export default function Checkout() {
   );
 
   return (
-    <div className="min-h-full pt-24 md:pt-28 bg-cream">
+    <div className="min-h-full pt-20 bg-cream">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
         {/* Progress */}
         <div className="flex items-center gap-3 mb-10">
