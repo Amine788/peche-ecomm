@@ -534,25 +534,6 @@ export default function Admin() {
           return (
             <div className="space-y-6">
               
-              {/* Top Bar Summary & Export */}
-              <div className="bg-slate-800/50 border border-slate-800 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div>
-                  <h3 className="text-base font-bold text-white flex items-center gap-2">
-                    <span>📊</span> Rapport des Ventes Réelles — IKKA DEL MAR
-                  </h3>
-                  <p className="text-xs text-slate-400 mt-0.5">Calculé en direct sur les {orders.length} commande{orders.length > 1 ? 's' : ''} enregistrée{orders.length > 1 ? 's' : ''}.</p>
-                </div>
-                <button
-                  onClick={() => alert(`📄 Rapport Ventes Réelles (${totalRevenue.toLocaleString('fr-MA')} MAD) exporté avec succès !`)}
-                  className="bg-teal-600 hover:bg-teal-500 text-white px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-teal-600/20 shrink-0"
-                >
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  Exporter le Rapport PDF
-                </button>
-              </div>
-
               {/* Row 1: Monthly Revenue Bar Chart & Sales Channels */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 
