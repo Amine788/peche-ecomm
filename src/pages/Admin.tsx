@@ -468,53 +468,173 @@ export default function Admin() {
 
         {/* ── TAB 3: ANALYTIQUES ── */}
         {tab === 'analytics' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-6">
             
-            {/* Sales Distribution by City */}
-            <div className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 shadow-xl">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-300 mb-6 flex items-center gap-2">
-                <span>📍</span> Ventes par Ville au Maroc
-              </h3>
-              <div className="space-y-4">
-                {[
-                  { city: 'Casablanca', count: 18, pct: 40 },
-                  { city: 'Rabat', count: 11, pct: 25 },
-                  { city: 'Tanger', count: 8, pct: 18 },
-                  { city: 'Agadir', count: 5, pct: 11 },
-                  { city: 'Marrakech', count: 3, pct: 6 },
-                ].map(c => (
-                  <div key={c.city} className="space-y-1.5">
-                    <div className="flex justify-between text-xs font-semibold">
-                      <span className="text-white">{c.city}</span>
-                      <span className="text-teal-400">{c.count} commandes ({c.pct}%)</span>
-                    </div>
-                    <div className="w-full h-2 bg-slate-900 rounded-full overflow-hidden">
-                      <div className="h-full bg-teal-500 rounded-full transition-all duration-1000" style={{ width: `${c.pct}%` }} />
-                    </div>
-                  </div>
-                ))}
+            {/* Top Bar Summary & Export */}
+            <div className="bg-slate-800/50 border border-slate-800 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <h3 className="text-base font-bold text-white flex items-center gap-2">
+                  <span>📊</span> Rapport Global des Ventes IKKA DEL MAR
+                </h3>
+                <p className="text-xs text-slate-400 mt-0.5">Statistiques consolidées basées sur les activités e-commerce au Maroc.</p>
               </div>
+              <button
+                onClick={() => alert('📄 Rapport Analytics mensuel généré avec succès !')}
+                className="bg-teal-600 hover:bg-teal-500 text-white px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-teal-600/20 shrink-0"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Exporter le Rapport PDF
+              </button>
             </div>
 
-            {/* Top Categories */}
-            <div className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 shadow-xl">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-300 mb-6 flex items-center gap-2">
-                <span>🎣</span> Catégories les plus populaires
-              </h3>
-              <div className="space-y-4">
-                {[
-                  { cat: 'Cannes à pêche', pct: 35, color: 'bg-emerald-500' },
-                  { cat: 'Moulinets', pct: 28, color: 'bg-blue-500' },
-                  { cat: 'Leurres & Appâts', pct: 20, color: 'bg-purple-500' },
-                  { cat: 'Natation & Plongée', pct: 17, color: 'bg-amber-500' },
-                ].map(c => (
-                  <div key={c.cat} className="space-y-1.5">
-                    <div className="flex justify-between text-xs font-semibold">
-                      <span className="text-white">{c.cat}</span>
-                      <span className="text-slate-300">{c.pct}% des ventes</span>
+            {/* Row 1: Monthly Revenue Bar Chart & Sales Channels */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              
+              {/* Monthly Revenue Growth Chart */}
+              <div className="lg:col-span-2 bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 shadow-xl space-y-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">Évolution du Chiffre d'Affaires</h4>
+                    <p className="text-xl font-black text-white mt-1">142,800 MAD <span className="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">+28.4% ce mois</span></p>
+                  </div>
+                  <span className="text-xs text-slate-400 font-semibold bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700">2026 (Jan - Jun)</span>
+                </div>
+
+                {/* Simulated Bar Chart */}
+                <div className="h-48 flex items-end gap-3 sm:gap-6 pt-6 pb-2 border-b border-slate-700/60 px-2">
+                  {[
+                    { month: 'Jan', value: 14500, height: '35%' },
+                    { month: 'Fév', value: 18200, height: '45%' },
+                    { month: 'Mar', value: 22400, height: '58%' },
+                    { month: 'Avr', value: 28900, height: '72%' },
+                    { month: 'Mai', value: 34100, height: '86%' },
+                    { month: 'Juin', value: 41200, height: '100%', highlight: true },
+                  ].map(item => (
+                    <div key={item.month} className="flex-1 flex flex-col items-center gap-2 group h-full justify-end">
+                      <div className="text-[10px] text-slate-400 font-bold opacity-0 group-hover:opacity-100 transition-opacity">{item.value.toLocaleString()} MAD</div>
+                      <div
+                        className={`w-full rounded-t-lg transition-all duration-500 ${item.highlight ? 'bg-gradient-to-t from-teal-600 to-teal-400 shadow-lg shadow-teal-500/30' : 'bg-slate-700 hover:bg-slate-600'}`}
+                        style={{ height: item.height }}
+                      />
+                      <span className={`text-xs font-bold ${item.highlight ? 'text-teal-400' : 'text-slate-400'}`}>{item.month}</span>
                     </div>
-                    <div className="w-full h-2 bg-slate-900 rounded-full overflow-hidden">
-                      <div className={`h-full ${c.color} rounded-full transition-all duration-1000`} style={{ width: `${c.pct}%` }} />
+                  ))}
+                </div>
+              </div>
+
+              {/* Sales Channels Breakdown */}
+              <div className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 shadow-xl space-y-6">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                  <span>📱</span> Canaux d'Acquisition
+                </h4>
+                <div className="space-y-4">
+                  {[
+                    { channel: 'WhatsApp Direct', pct: 48, color: 'bg-emerald-500', count: '48%' },
+                    { channel: 'Site Web Direct', pct: 32, color: 'bg-teal-500', count: '32%' },
+                    { channel: 'Instagram Shop', pct: 14, color: 'bg-purple-500', count: '14%' },
+                    { channel: 'Appels & Magasin', pct: 6, color: 'bg-amber-500', count: '6%' },
+                  ].map(c => (
+                    <div key={c.channel} className="space-y-1.5">
+                      <div className="flex justify-between text-xs font-semibold">
+                        <span className="text-white">{c.channel}</span>
+                        <span className="text-slate-300 font-mono">{c.count}</span>
+                      </div>
+                      <div className="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden">
+                        <div className={`h-full ${c.color} rounded-full transition-all duration-1000`} style={{ width: `${c.pct}%` }} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="p-3 bg-slate-900/60 rounded-xl border border-slate-700/50 text-[11px] text-slate-400">
+                  💡 <strong>Astuce:</strong> Près de 50% de vos clients commandent directement via le bouton WhatsApp sur la fiche produit.
+                </div>
+              </div>
+
+            </div>
+
+            {/* Row 2: Top Selling Products & City Distribution */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              
+              {/* Sales Distribution by City */}
+              <div className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 shadow-xl">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-6 flex items-center gap-2">
+                  <span>📍</span> Répartition des Ventes par Ville au Maroc
+                </h3>
+                <div className="space-y-4">
+                  {[
+                    { city: 'Casablanca', count: 42, pct: 40, color: 'bg-teal-500' },
+                    { city: 'Rabat', count: 26, pct: 25, color: 'bg-blue-500' },
+                    { city: 'Tanger', count: 19, pct: 18, color: 'bg-indigo-500' },
+                    { city: 'Agadir', count: 12, pct: 11, color: 'bg-purple-500' },
+                    { city: 'Marrakech', count: 6, pct: 6, color: 'bg-amber-500' },
+                  ].map(c => (
+                    <div key={c.city} className="space-y-1.5">
+                      <div className="flex justify-between text-xs font-semibold">
+                        <span className="text-white font-medium">{c.city}</span>
+                        <span className="text-teal-400 font-mono">{c.count} commandes ({c.pct}%)</span>
+                      </div>
+                      <div className="w-full h-2 bg-slate-900 rounded-full overflow-hidden">
+                        <div className={`h-full ${c.color} rounded-full transition-all duration-1000`} style={{ width: `${c.pct}%` }} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Order Delivery Funnel */}
+              <div className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 shadow-xl">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-6 flex items-center gap-2">
+                  <span>🚚</span> Entonnoir de Traitement des Commandes
+                </h3>
+                <div className="space-y-4">
+                  {[
+                    { step: '1. Reçues & Confirmées', count: '100%', pct: 100, color: 'bg-blue-500' },
+                    { step: '2. En Préparation', count: '92%', pct: 92, color: 'bg-purple-500' },
+                    { step: '3. Remises au Livreur', count: '85%', pct: 85, color: 'bg-teal-500' },
+                    { step: '4. Livrées & Encaissées', count: '81%', pct: 81, color: 'bg-emerald-500' },
+                  ].map(s => (
+                    <div key={s.step} className="space-y-1.5">
+                      <div className="flex justify-between text-xs font-semibold">
+                        <span className="text-white font-medium">{s.step}</span>
+                        <span className="text-emerald-400 font-mono">{s.count}</span>
+                      </div>
+                      <div className="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden">
+                        <div className={`h-full ${s.color} rounded-full transition-all duration-1000`} style={{ width: `${s.pct}%` }} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 pt-4 border-t border-slate-700/50 flex justify-between items-center text-xs text-slate-400">
+                  <span>Délai moyen de livraison:</span>
+                  <strong className="text-white font-mono bg-slate-900 px-2.5 py-1 rounded-md">2 à 3 jours ouvrés</strong>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Row 3: Top Selling Products */}
+            <div className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 shadow-xl">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-6 flex items-center gap-2">
+                <span>🏆</span> Top 5 des Produits les plus Vendus
+              </h3>
+              <div className="divide-y divide-slate-700/50">
+                {products.slice(0, 5).map((p, rank) => (
+                  <div key={p.id} className="py-3 flex items-center justify-between gap-4 hover:bg-slate-700/30 px-2 rounded-xl transition-colors">
+                    <div className="flex items-center gap-3">
+                      <span className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs ${rank === 0 ? 'bg-amber-500 text-slate-950' : rank === 1 ? 'bg-slate-300 text-slate-950' : rank === 2 ? 'bg-amber-700 text-white' : 'bg-slate-700 text-slate-400'}`}>
+                        #{rank + 1}
+                      </span>
+                      <img src={p.images[0]} alt={p.name} className="w-10 h-12 rounded-lg object-cover bg-slate-900 shrink-0" />
+                      <div>
+                        <p className="font-bold text-white text-sm line-clamp-1">{p.name}</p>
+                        <p className="text-xs text-slate-400 capitalize">{p.category}</p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-black text-white text-sm">{((p.salePrice ?? p.price) * (18 - rank * 3)).toLocaleString('fr-MA')} MAD</p>
+                      <p className="text-xs text-teal-400 font-semibold">{18 - rank * 3} unités vendues</p>
                     </div>
                   </div>
                 ))}
