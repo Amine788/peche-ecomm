@@ -369,14 +369,14 @@ export default function Shop() {
     <div className="min-h-full pt-20">
 
       {/* ── Quick navigation tabs ── */}
-      <div className="bg-navy border-b border-teal/20 overflow-x-auto scrollbar-none">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center min-w-max">
+      <div className="bg-navy border-b border-teal/20">
+        <div className="overflow-x-auto scrollbar-none">
+          <div className="flex items-center px-4 min-w-max mx-auto max-w-7xl">
 
             {/* SOLDES — pill toujours visible */}
             <button
               onClick={() => setShopCategory('sale')}
-              className={`flex items-center gap-2 mx-3 my-2 px-4 py-2 text-[11px] tracking-[0.2em] uppercase font-bold transition-all whitespace-nowrap ${
+              className={`flex items-center gap-2 mx-3 my-2 px-4 py-2 text-[11px] tracking-[0.2em] uppercase font-bold transition-all whitespace-nowrap shrink-0 ${
                 shopCategory === 'sale'
                   ? 'coral-gradient text-cream'
                   : 'bg-coral/15 border border-coral/60 text-coral hover:bg-coral/25'
@@ -388,12 +388,12 @@ export default function Shop() {
               Soldes
             </button>
 
-            <span className="w-px h-6 bg-blue/20 mx-1" />
+            <span className="w-px h-6 bg-blue/20 mx-1 shrink-0" />
 
             {/* NOUVEAUTÉS — dot animé */}
             <button
               onClick={() => setShopCategory('new')}
-              className={`flex items-center gap-1.5 px-4 py-4 text-[11px] tracking-[0.18em] uppercase font-bold border-b-2 transition-all whitespace-nowrap ${
+              className={`flex items-center gap-1.5 px-4 py-4 text-[11px] tracking-[0.18em] uppercase font-bold border-b-2 transition-all whitespace-nowrap shrink-0 ${
                 shopCategory === 'new'
                   ? 'border-teal text-teal'
                   : 'border-transparent text-silver/60 hover:text-teal/80'
@@ -408,7 +408,7 @@ export default function Shop() {
               <button
                 key={tab.id}
                 onClick={() => setShopCategory(tab.id)}
-                className={`px-4 py-4 text-[11px] tracking-[0.18em] uppercase font-semibold border-b-2 transition-all whitespace-nowrap ${
+                className={`px-4 py-4 text-[11px] tracking-[0.18em] uppercase font-semibold border-b-2 transition-all whitespace-nowrap shrink-0 ${
                   shopCategory === tab.id
                     ? 'border-teal text-teal'
                     : 'border-transparent text-silver/50 hover:text-silver'
